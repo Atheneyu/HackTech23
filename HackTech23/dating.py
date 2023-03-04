@@ -3,7 +3,8 @@ class Self:
         self.name = name
         self.health = health
     
-    def 
+    def fakefunc(self):
+        print("hi!")
 
 
 class Targets:
