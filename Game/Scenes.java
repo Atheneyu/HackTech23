@@ -1,4 +1,4 @@
-package GamePack;
+import java.awt.*;
 
 public class Scenes {
    /** Princeton Test:
@@ -10,6 +10,9 @@ public class Scenes {
         StdDraw.line(0.2, 0.2, 0.8, 0.2);
     }
     */
+   private static int X = GamePlay.width();
+   private static int Y = GamePlay.height();
+
 }
 
 
