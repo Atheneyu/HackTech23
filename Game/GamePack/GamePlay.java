@@ -1,3 +1,5 @@
+package GamePack;
+
 public class GamePlay {
     private static final int WIDTH = 800;
     /** Window width */
@@ -7,7 +9,7 @@ public class GamePlay {
 
     public static void main(String[] args) {
         StdDraw.setCanvasSize(WIDTH, HEIGHT);
-        /** Sets the window to 512 x 512 by default. */
+        /** Sets the window to 800 x 800 by default. */
 
     }
 

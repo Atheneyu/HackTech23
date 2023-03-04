@@ -1,3 +1,4 @@
+package GamePack;
 
 public class Scenes {
    /** Princeton Test:
