@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Scenes {
+public class Images {
    /** Princeton Test:
     * public static void main(String[] args) {
         StdDraw.setPenRadius(0.05);
@@ -12,6 +12,9 @@ public class Scenes {
     */
    private static int X = GamePlay.width();
    private static int Y = GamePlay.height();
+   private static final double RADIUS = 80;
+
+
 
 }
 
