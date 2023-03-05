@@ -10,10 +10,13 @@ public class GamePlay {
 
     private static final double RADIUS = 80;
 
+    private static final Random RANDOM = new Random();
+
     public static void main(String[] args) {
       GamePlay game = new GamePlay(0);
       game.startMap();
-      game.decreaseHealth(9);
+      game.decreaseHealth(0);
+      game.digBox();
     }
 
     public GamePlay(int start) {
@@ -39,18 +42,16 @@ public class GamePlay {
      */
     public static void decreaseHealth(int a) {
         int x = 0;
+        int w = RANDOM.nextInt(1, WIDTH);
+        int h = RANDOM.nextInt(1, HEIGHT);
         while (x <= a) {
-            int randWidth = (int)(Math.random() * WIDTH);
-            int randHeight = (int)(Math.random() * HEIGHT);
-            if (StdDraw.getPenColor() == Color.GRAY) {
-                randWidth = (int)(Math.random() * WIDTH);
-                randHeight = (int)(Math.random() * HEIGHT);
-            } else {
-                StdDraw.setPenColor(Color.GRAY);
-                StdDraw.filledSquare(randWidth, randHeight, 0.5);
-                x++;
-            }
+            StdDraw.setPenColor(Color.GRAY);
+            StdDraw.filledSquare(w, h, 10);
+            w = RANDOM.nextInt(1, WIDTH);
+            h = RANDOM.nextInt(1, HEIGHT);
+            x++;
         }
+        StdDraw.show();
     }
     public void titleScreen() {
         boolean up = false;
@@ -76,6 +77,9 @@ public class GamePlay {
         }
     }
 
+    public void gameStart() {
+        startMap();
+    }
     public void globe(double x, double y) {
         StdDraw.setPenColor(Color.BLUE);
         StdDraw.filledCircle(x, y, RADIUS);
@@ -94,19 +98,22 @@ public class GamePlay {
                 break;
         }
     }
-
+    public void digBox() {
+        StdDraw.setPenColor(Color.WHITE);
+        StdDraw.filledRectangle(WIDTH / 2, HEIGHT / 4, WIDTH / 2.5, HEIGHT / 10);
+        StdDraw.show();
+    }
     public static void startMap() {
-        Random random = new Random();
-        int r = random.nextInt(1, 100);
-        for (int x = 0; x < WIDTH; x++) {
-            for (int y = 0; y < HEIGHT; y++) {
+        int r = RANDOM.nextInt(1, 3);
+        for (int x = 0; x < WIDTH; x += 10) {
+            for (int y = 0; y < HEIGHT; y += 10) {
                 if (r % 2 == 0) {
-                    StdDraw.setPenColor(Color.GREEN);
+                    StdDraw.setPenColor(102, 255, 102);
                 } else {
-                    StdDraw.setPenColor(Color.BLUE);
+                    StdDraw.setPenColor(77,166,255);
                 }
-                StdDraw.filledSquare(x, y,0.5);
-                r = random.nextInt(1, 100);
+                StdDraw.filledSquare(x, y,10);
+                r = RANDOM.nextInt(1, 3);
             }
         }
         StdDraw.show();
