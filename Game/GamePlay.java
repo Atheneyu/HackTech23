@@ -12,11 +12,13 @@ public class GamePlay {
 
     private static final Random RANDOM = new Random();
 
+    private static final Font digFont = new Font("Century", Font.ITALIC, 18);
+
     public static void main(String[] args) {
       GamePlay game = new GamePlay(0);
       game.startMap();
       game.decreaseHealth(0);
-      game.digBox();
+      game.digBox(false);
     }
 
     public GamePlay(int start) {
@@ -98,11 +100,25 @@ public class GamePlay {
                 break;
         }
     }
-    public void digBox() {
+    public void digBox(boolean earthTalk) {
         StdDraw.setPenColor(Color.WHITE);
         StdDraw.filledRectangle(WIDTH / 2, HEIGHT / 4, WIDTH / 2.5, HEIGHT / 10);
+        if (earthTalk) {
+            StdDraw.setPenColor(Color.BLACK);
+            StdDraw.filledRectangle(WIDTH / 7, HEIGHT / 4 + HEIGHT / 10, 50, 15);
+            StdDraw.setPenColor(77,166,255);
+            StdDraw.setFont(digFont);
+            StdDraw.text(WIDTH / 7, HEIGHT / 4 + HEIGHT / 10, "Earth");
+        } else {
+            StdDraw.setPenColor(Color.BLACK);
+            StdDraw.filledRectangle(6 * WIDTH / 7, HEIGHT / 4 + HEIGHT / 10, 50, 15);
+            StdDraw.setPenColor(Color.red);
+            StdDraw.setFont(digFont);
+            StdDraw.text(6 * WIDTH / 7, HEIGHT / 4 + HEIGHT / 10, "Humanity");
+        }
         StdDraw.show();
     }
+
     public static void startMap() {
         int r = RANDOM.nextInt(1, 3);
         for (int x = 0; x < WIDTH; x += 10) {
