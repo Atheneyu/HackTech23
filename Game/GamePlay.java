@@ -16,9 +16,7 @@ public class GamePlay {
 
     public static void main(String[] args) {
       GamePlay game = new GamePlay(0);
-      game.startMap();
-      game.decreaseHealth(0);
-      game.digBox(false);
+      game.titleScreen();
     }
 
     public GamePlay(int start) {
@@ -57,8 +55,7 @@ public class GamePlay {
     }
     public void titleScreen() {
         boolean up = false;
-        for (int i = 0; i < 20; i += 1) {
-
+        for (int i = 0; i < 5; i += 1) {
             /** Below: Loop for up-and-down animation. */
             StdDraw.clear();
             StdDraw.setPenColor(Color.BLUE);
@@ -77,10 +74,14 @@ public class GamePlay {
             StdDraw.show();
             StdDraw.pause(700);
         }
+        startOrQuit();
     }
 
     public void gameStart() {
         startMap();
+        digBox(true, "Hi! I'm Earth and I'm looking for a friend!");
+        StdDraw.pause(2000);
+        clearDig(true);
     }
     public void globe(double x, double y) {
         StdDraw.setPenColor(Color.BLUE);
@@ -94,13 +95,15 @@ public class GamePlay {
         switch(input) {
             case 'y':
                 //start game
+                gameStart();
                 break;
             case 'n':
                 System.exit(0);
                 break;
         }
     }
-    public void digBox(boolean earthTalk) {
+
+    public void clearDig(boolean earthTalk) {
         StdDraw.setPenColor(Color.WHITE);
         StdDraw.filledRectangle(WIDTH / 2, HEIGHT / 4, WIDTH / 2.5, HEIGHT / 10);
         if (earthTalk) {
@@ -115,6 +118,26 @@ public class GamePlay {
             StdDraw.setPenColor(Color.red);
             StdDraw.setFont(digFont);
             StdDraw.text(6 * WIDTH / 7, HEIGHT / 4 + HEIGHT / 10, "Humanity");
+        }
+        StdDraw.show();
+    }
+    public void digBox(boolean earthTalk, String str) {
+        StdDraw.setPenColor(Color.WHITE);
+        StdDraw.filledRectangle(WIDTH / 2, HEIGHT / 4, WIDTH / 2.5, HEIGHT / 10);
+        if (earthTalk) {
+            StdDraw.setPenColor(Color.BLACK);
+            StdDraw.filledRectangle(WIDTH / 7, HEIGHT / 4 + HEIGHT / 10, 50, 15);
+            StdDraw.setPenColor(77,166,255);
+            StdDraw.setFont(digFont);
+            StdDraw.text(WIDTH / 7, HEIGHT / 4 + HEIGHT / 10, "Earth");
+            StdDraw.text(WIDTH / 2, HEIGHT / 4, str);
+        } else {
+            StdDraw.setPenColor(Color.BLACK);
+            StdDraw.filledRectangle(6 * WIDTH / 7, HEIGHT / 4 + HEIGHT / 10, 50, 15);
+            StdDraw.setPenColor(Color.red);
+            StdDraw.setFont(digFont);
+            StdDraw.text(6 * WIDTH / 7, HEIGHT / 4 + HEIGHT / 10, "Humanity");
+            StdDraw.text(WIDTH / 2, HEIGHT / 4, str);
         }
         StdDraw.show();
     }
