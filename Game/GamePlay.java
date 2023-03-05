@@ -14,6 +14,7 @@ public class GamePlay {
 
     private static final Font digFont = new Font("Century", Font.ITALIC, 18);
 
+
     public static void main(String[] args) {
       GamePlay game = new GamePlay(0);
       game.titleScreen();
@@ -80,12 +81,76 @@ public class GamePlay {
     public void gameStart() {
         startMap();
         digBox(true, "Hi! I'm Earth and I'm looking for a friend!");
+        earthClear();
+        digBox(true, "Oh, look! Someone's approaching.");
+        humanClear();
+        /** TODO: Loop through dialogue list(?) */
+        digBox(false, "I'm humanity. I promise I'll treat you right.");
+        humanClear();
+        digBox(false, "I'm trying to make you better. I'm making cars to make life easier!");
+        earthClear();
+        digBox(true, "Oh? But the fumes are hurting me :(");
+        humanClear();
+        digBox(false, "Don't worry! I have a plan. Tell me which will help you:");
+        choices("Doing lots of emissions testing!", "Promoting hybrid vehicles as an alternative to gas cars");
+        correct('1', "They don't help when companies like Volkswagen can cheat!", "It won't happen again, we promise.", "You lied! Hybrid vehicles release almost the same emissions as gas!", "Oh, well. We still tried making them better, and that's what counts.");
+        humanClear();
+        digBox(false, "Why don't we talk about something else instead, like your oceans!");
+        humanClear();
+        digBox(false, "So full of life! Now, we're working a bunch to help.");
+        earthClear();
+        digBox(true, "Hmm, like what?");
+        choices("Having no more plastic bottles in the ocean.", "Having more recyclable and compostable plastic.");
+        correct('2', "There are still so many! Didn't CocaCola promise to have this done by 2023.", "Well, they're actually the number 1 plastic polluter.", "Were you just lying? Barely any got recycled!", "We can't control what happens after we put our things in the recycling bin.");
+        earthClear();
+        digBox(true, "Why are you hurting me so much :( I'm in so much pain...");
+        humanClear();
+        digBox(false, "I'm sorry. Just trust me, I'm doing this for you!");
+        choices("Trust Humanity", "Get Rid of Humanity");
+        ending();
+    }
+
+    public void ending() {
+        Character input = solicitMenuInput();
+        if (input.equals('1')) {
+            StdDraw.clear(Color.BLACK);
+        } else {
+            StdDraw.clear(Color.ORANGE);
+        }
+        StdDraw.pause(400);
+        Font font = new Font("Arial", Font.BOLD, 60);
+        StdDraw.setPenColor(Color.WHITE);
+        StdDraw.text(WIDTH / 2, HEIGHT / 2, "BAD ENDING.");
+        StdDraw.show();
+    }
+    public void correct(Character cor, String response1, String human1, String response2, String human2) {
+        Character input = solicitMenuInput();
+        String response;
+        String human;
+        if (input.equals(cor)) {
+            decreaseHealth(250);
+            response = response1;
+            human = human1;
+        } else {
+            decreaseHealth(500);
+            response = response2;
+            human = human2;
+        }
+        earthClear();
+        digBox(true, response);
+        humanClear();
+        digBox(false, human);
+        StdDraw.show();
+    }
+
+    public void earthClear() {
         StdDraw.pause(2000);
         clearDig(true);
-        digBox(true, "Oh, look! Someone's approaching.");
+    }
+
+    public void humanClear() {
         StdDraw.pause(2000);
         clearDig(false);
-        digBox(false, "I'm humanity. I promise I'll treat you right.");
     }
     public void globe(double x, double y) {
         StdDraw.setPenColor(Color.BLUE);
@@ -106,6 +171,17 @@ public class GamePlay {
                 break;
         }
     }
+
+    public void choices(String one, String two) {
+        earthClear();
+        StdDraw.setPenColor(Color.BLACK);
+        StdDraw.setFont(digFont);
+        StdDraw.text(WIDTH / 2, HEIGHT / 4 + 10, "(1) " + one);
+        StdDraw.text(WIDTH / 2, HEIGHT / 4 - 10, "(2) " + two);
+        StdDraw.show();
+    }
+
+
 
     public void clearDig(boolean earthTalk) {
         /** TODO: fix repetitive code! */
@@ -176,7 +252,7 @@ public class GamePlay {
             if (StdDraw.hasNextKeyTyped()) {
                 Character nextKeyTyped = StdDraw.nextKeyTyped();
                 nextKeyTyped = Character.toLowerCase(nextKeyTyped);
-                if (nextKeyTyped == 'y' || nextKeyTyped == 'n') {
+                if (nextKeyTyped == 'y' || nextKeyTyped == 'n' || nextKeyTyped == '1' || nextKeyTyped =='2' ) {
                     input = nextKeyTyped;
                 }
             }
