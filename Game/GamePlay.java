@@ -69,9 +69,11 @@ public class GamePlay {
             }
             /** Text below. */
             StdDraw.setPenColor(Color.BLACK);
-            Font fontBig = new Font("Monaco", Font.BOLD, 23);
+            Font fontBig = new Font("Century", Font.BOLD, 40);
             StdDraw.setFont(fontBig);
-            StdDraw.textLeft(120, 120, "PlanetEarth");
+            StdDraw.text(WIDTH / 2, 200, "PlanetEarth");
+            StdDraw.setFont(digFont);
+            StdDraw.text(WIDTH/2, 100, "Press y to start or n to exit the window.");
             StdDraw.show();
             StdDraw.pause(700);
         }
@@ -118,8 +120,9 @@ public class GamePlay {
             StdDraw.clear(Color.ORANGE);
         }
         StdDraw.pause(400);
-        Font font = new Font("Arial", Font.BOLD, 60);
+        Font font = new Font("Century", Font.ITALIC, 80);
         StdDraw.setPenColor(Color.WHITE);
+        StdDraw.setFont(font);
         StdDraw.text(WIDTH / 2, HEIGHT / 2, "BAD ENDING.");
         StdDraw.show();
     }
@@ -221,6 +224,7 @@ public class GamePlay {
             StdDraw.text(WIDTH / 7, HEIGHT / 4 + HEIGHT / 10, "Earth");
             StdDraw.text(WIDTH / 2, HEIGHT / 4, str);
         } else {
+            StdDraw.picture(10 * WIDTH / 15, 10 *HEIGHT / 15, "emoji.png");
             StdDraw.setPenColor(Color.BLACK);
             StdDraw.filledRectangle(6 * WIDTH / 7, HEIGHT / 4 + HEIGHT / 10, 50, 15);
             StdDraw.setPenColor(Color.red);
