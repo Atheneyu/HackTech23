@@ -82,6 +82,10 @@ public class GamePlay {
         digBox(true, "Hi! I'm Earth and I'm looking for a friend!");
         StdDraw.pause(2000);
         clearDig(true);
+        digBox(true, "Oh, look! Someone's approaching.");
+        StdDraw.pause(2000);
+        clearDig(false);
+        digBox(false, "I'm humanity. I promise I'll treat you right.");
     }
     public void globe(double x, double y) {
         StdDraw.setPenColor(Color.BLUE);
@@ -104,15 +108,24 @@ public class GamePlay {
     }
 
     public void clearDig(boolean earthTalk) {
-        StdDraw.setPenColor(Color.WHITE);
-        StdDraw.filledRectangle(WIDTH / 2, HEIGHT / 4, WIDTH / 2.5, HEIGHT / 10);
+        /** TODO: fix repetitive code! */
         if (earthTalk) {
+            StdDraw.setPenColor(77,166,255);
+            StdDraw.filledRectangle(6 * WIDTH / 7, HEIGHT / 4 + HEIGHT / 10, 50, 15);
+            StdDraw.setPenColor(Color.WHITE);
+            StdDraw.filledRectangle(WIDTH / 2, HEIGHT / 4, WIDTH / 2.5, HEIGHT / 10);
+
             StdDraw.setPenColor(Color.BLACK);
             StdDraw.filledRectangle(WIDTH / 7, HEIGHT / 4 + HEIGHT / 10, 50, 15);
             StdDraw.setPenColor(77,166,255);
             StdDraw.setFont(digFont);
             StdDraw.text(WIDTH / 7, HEIGHT / 4 + HEIGHT / 10, "Earth");
         } else {
+            StdDraw.setPenColor(77,166,255);
+            StdDraw.filledRectangle(WIDTH / 7, HEIGHT / 4 + HEIGHT / 10, 50, 15);
+            StdDraw.setPenColor(Color.WHITE);
+            StdDraw.filledRectangle(WIDTH / 2, HEIGHT / 4, WIDTH / 2.5, HEIGHT / 10);
+
             StdDraw.setPenColor(Color.BLACK);
             StdDraw.filledRectangle(6 * WIDTH / 7, HEIGHT / 4 + HEIGHT / 10, 50, 15);
             StdDraw.setPenColor(Color.red);
